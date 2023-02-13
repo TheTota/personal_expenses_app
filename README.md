@@ -1,6 +1,7 @@
 # personal_expenses_app
 
-A new Flutter project.
+Second Flutter project in the Udemy Flutter mastery course.
+It's supposed to be an "expenses management" app. 
 
 ## Getting Started
 
