@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 import './transaction.dart';
 
@@ -20,8 +21,8 @@ class MyHomePage extends StatelessWidget {
   final List<Transaction> transactions = [
     Transaction(
         id: 't1',
-        title: 'MacBook Pro 14\'',
-        amount: 2699.99,
+        title: 'Hogwarts Legacy',
+        amount: 59.99,
         date: DateTime.now()),
     Transaction(
         id: 't2', title: 'Asos Order', amount: 84.99, date: DateTime.now()),
@@ -64,11 +65,13 @@ class MyHomePage extends StatelessWidget {
                           color: Colors.purple,
                           width: 2,
                         ),
-                        borderRadius: BorderRadius.all(Radius.circular(10))
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                       ),
-                      width: 115,
+                      width: 110,
                       child: Text(
-                        tx.amount.toString(),
+                        '\$${tx.amount.toString()}',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -87,7 +90,7 @@ class MyHomePage extends StatelessWidget {
                             fontSize: 17,
                           ),
                         ),
-                        Text(tx.date.toString()),
+                        Text(DateFormat.yMMMd().format(tx.date)),
                       ],
                     )
                   ],
