@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
 
-class NewTransaction extends StatelessWidget {
+class NewTransaction extends StatefulWidget {
+  final Function addTransactionCallback;
+
+  NewTransaction(this.addTransactionCallback, {super.key});
+
+  @override
+  State<NewTransaction> createState() => _NewTransactionState();
+}
+
+class _NewTransactionState extends State<NewTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-
-  final Function _addTransactionCallback;
-
-  NewTransaction(this._addTransactionCallback, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,17 +29,30 @@ class NewTransaction extends StatelessWidget {
             TextField(
               decoration: const InputDecoration(labelText: 'Amount'),
               controller: amountController,
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
+              onSubmitted: (_) => submitData(),
             ),
             TextButton(
-              style: TextButton.styleFrom(foregroundColor: Colors.purple),
-              onPressed: () {
-                _addTransactionCallback(titleController.text, double.parse(amountController.text));
-              },
+              style: TextButton.styleFrom(foregroundColor: Theme.of(context).primaryColor),
+              onPressed: submitData,
               child: const Text('Add Transaction'),
             )
           ],
         ),
       ),
     );
+  }
+
+  void submitData() {
+    final enteredTitle = titleController.text;
+    final enteredAmount = double.tryParse(amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount == null || enteredAmount <= 0) {
+      return;
+    }
+
+    widget.addTransactionCallback(enteredTitle, enteredAmount);
+    
+    Navigator.of(context).pop();
   }
 }
