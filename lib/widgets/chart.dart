@@ -50,10 +50,11 @@ class Chart extends StatelessWidget {
             return Flexible(
               fit: FlexFit.tight,
               child: ChartBar(
-                data['day'] as String,
-                data['amount'] as double,
-                totalSpending == 0.0 ? 0.0 : (data['amount'] as double) / totalSpending
-              ),
+                  data['day'] as String,
+                  data['amount'] as double,
+                  totalSpending == 0.0
+                      ? 0.0
+                      : (data['amount'] as double) / totalSpending),
             );
           }).toList(),
         ),
