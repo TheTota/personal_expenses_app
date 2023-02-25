@@ -1,5 +1,11 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import './adaptive_text_button.dart';
+import './adaptive_elevated_button.dart';
 
 class NewTransaction extends StatefulWidget {
   final Function addTransactionCallback;
@@ -37,10 +43,7 @@ class _NewTransactionState extends State<NewTransaction> {
               TextField(
                 decoration: const InputDecoration(labelText: 'Amount'),
                 controller: _amountController,
-                keyboardType: TextInputType.numberWithOptions(
-                  decimal: true,
-                  signed: true,
-                ),
+                keyboardType: TextInputType.number,
                 onSubmitted: (_) => _submitData(),
               ),
               Container(
@@ -52,21 +55,13 @@ class _NewTransactionState extends State<NewTransaction> {
                           ? 'No date chosen'
                           : 'Picked date: ${DateFormat.yMd().format(_selectedDate!)}'),
                     ),
-                    TextButton(
-                      onPressed: _presentDatePicker,
-                      style: TextButton.styleFrom(
-                          foregroundColor: Theme.of(context).primaryColor),
-                      child: Text(
-                        'Choose date',
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                    )
+                    AdaptiveTextButton('Choose date', _presentDatePicker),
                   ],
                 ),
               ),
-              ElevatedButton(
-                onPressed: _submitData,
-                child: const Text('Add Transaction'),
+              AdaptiveElevatedButton(
+                text: 'Add Transaction',
+                callback: _submitData,
               )
             ],
           ),
