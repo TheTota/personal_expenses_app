@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -10,7 +7,7 @@ import './adaptive_elevated_button.dart';
 class NewTransaction extends StatefulWidget {
   final Function addTransactionCallback;
 
-  NewTransaction(this.addTransactionCallback, {super.key});
+  const NewTransaction(this.addTransactionCallback, {super.key});
 
   @override
   State<NewTransaction> createState() => _NewTransactionState();
@@ -46,7 +43,7 @@ class _NewTransactionState extends State<NewTransaction> {
                 keyboardType: TextInputType.number,
                 onSubmitted: (_) => _submitData(),
               ),
-              Container(
+              SizedBox(
                 height: 70,
                 child: Row(
                   children: [

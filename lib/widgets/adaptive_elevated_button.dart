@@ -7,8 +7,9 @@ class AdaptiveElevatedButton extends StatelessWidget {
   final String text;
   final TextStyle? style;
   final VoidCallback callback;
-  
-  const AdaptiveElevatedButton({required this.text, required this.callback, this.style, super.key});
+
+  const AdaptiveElevatedButton(
+      {required this.text, required this.callback, this.style, super.key});
 
   @override
   Widget build(BuildContext context) {
